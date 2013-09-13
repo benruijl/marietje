@@ -127,8 +127,6 @@ public class QueueListFragment extends ListFragment {
 
                                     return row;
                                 }
-
-                                ;
                             };
 
                         }

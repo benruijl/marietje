@@ -45,8 +45,10 @@ public class SongListFragment extends ListFragment implements
         mAdapter = new SimpleCursorAdapter(getActivity(),
                 R.layout.songs_layout, null, new String[]{
                 MediaEntry.COLUMN_NAME_TITLE,
-                MediaEntry.COLUMN_NAME_ARTIST}, new int[]{
-                R.id.text1, R.id.text2}, 0);
+                MediaEntry.COLUMN_NAME_ARTIST,
+                MediaEntry.COLUMN_NAME_LENGTH}, new int[]{
+                R.id.text1, R.id.text2, R.id.length}, 0);
+
         setListAdapter(mAdapter);
 
         getLoaderManager().initLoader(0, null, this);
@@ -166,7 +168,7 @@ public class SongListFragment extends ListFragment implements
 
         return new CursorLoader(getActivity(), baseUri, new String[]{"_id",
                 MediaEntry.COLUMN_NAME_ENTRY_ID, MediaEntry.COLUMN_NAME_TITLE,
-                MediaEntry.COLUMN_NAME_ARTIST}, null, null, MediaEntry.COLUMN_NAME_TITLE + "," +
+                MediaEntry.COLUMN_NAME_ARTIST, MediaEntry.COLUMN_NAME_LENGTH}, null, null, MediaEntry.COLUMN_NAME_TITLE + "," +
                 MediaEntry.COLUMN_NAME_ARTIST);
     }
 

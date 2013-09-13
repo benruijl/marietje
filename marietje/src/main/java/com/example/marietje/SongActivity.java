@@ -29,6 +29,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -96,6 +97,10 @@ public class SongActivity extends ActionBarActivity {
 
                         String title = vals.getString(1).trim();
                         String artist = vals.getString(0).trim();
+                        float length = (float)vals.getDouble(2);
+
+                        DecimalFormat df = new DecimalFormat("#.##");
+                        length = Float.parseFloat(df.format(length / 60));
 
                         if (title == "" || artist == "") {
                             continue; // skip faulty track
@@ -110,6 +115,8 @@ public class SongActivity extends ActionBarActivity {
                                 artist);
                         values.put(MediaEntry.COLUMN_NAME_REQCOUNT,
                                 0); // TODO: keep this value if it has any
+                        values.put(MediaEntry.COLUMN_NAME_LENGTH,
+                                length);
 
                         db.insert(MediaEntry.TABLE_NAME, null, values);
                     }
